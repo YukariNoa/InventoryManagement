@@ -14,10 +14,7 @@ class AddRemoveItemViewModel : ViewModel() {
         value = "This is slideshow Fragment really?"
     }
 
-    private val db = FirebaseFirestore.getInstance()
-
     private val _items = MutableLiveData<List<Item>>()
-    val items: LiveData<List<Item>> = _items
 
     init {
         fetchInventoryData()
@@ -51,11 +48,6 @@ class AddRemoveItemViewModel : ViewModel() {
                 Log.w(TAG, "Error getting documents.", exception)
             }
     }
-
-    fun updateItemList(newList: List<Item>) {
-        _itemList.value = newList
-    }
-
 
     val text: LiveData<String> = _text
 }

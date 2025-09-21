@@ -14,8 +14,6 @@ class InventoryViewModel : ViewModel() {
         value = "idk what this is lmao"
     }
 
-    private val _items = MutableLiveData<List<Item>>()
-
     init {
         fetchInventoryData()
     }
