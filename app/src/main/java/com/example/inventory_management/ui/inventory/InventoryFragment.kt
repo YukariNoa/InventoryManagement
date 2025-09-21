@@ -8,16 +8,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import com.example.inventory_management.databinding.FragmentInventoryBinding
-import com.example.inventory_management.ItemAdapter
 import android.widget.TableRow
 import android.graphics.Typeface
 import android.widget.Button
 import android.widget.LinearLayout
 import android.view.Gravity
 import androidx.core.content.ContextCompat
-
+import androidx.fragment.app.viewModels
 
 
 import com.example.inventory_management.R
@@ -38,15 +36,18 @@ class InventoryFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val inventoryViewModel =
-            ViewModelProvider(this).get(InventoryViewModel::class.java)
+        //val inventoryViewModel =
+        //   ViewModelProvider(this).get(InventoryViewModel::class.java)
+
+        val viewModel: InventoryViewModel by viewModels()
+
         _binding = FragmentInventoryBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
 
 
         val textView: TextView = binding.textInventory
-        inventoryViewModel.text.observe(viewLifecycleOwner) {
+        viewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
         }
 
@@ -68,12 +69,12 @@ class InventoryFragment : Fragment() {
         }*/
 
         // Observe LiveData and update TableLayout
-        inventoryViewModel.itemList.observe(viewLifecycleOwner) { items ->
+        viewModel.itemList.observe(viewLifecycleOwner) { items ->
             populateTableLayout(items)
         }
 
         // Fetch data
-        inventoryViewModel.fetchInventoryData()
+        viewModel.fetchInventoryData()
 
         binding.AddItem.setOnClickListener {
             val tableLayout = binding.inventoryTable
@@ -109,10 +110,6 @@ class InventoryFragment : Fragment() {
         return root
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
@@ -137,7 +134,7 @@ class InventoryFragment : Fragment() {
         }
 
         // Set dynamic text size based on screen width
-        val textSize_Base = if (screenWidth > 1200) { // Tablet
+        val textSizeBase = if (screenWidth > 1200) { // Tablet
             18f // Larger text for tablet
         } else {
             14f // Smaller text for phones
@@ -171,7 +168,7 @@ class InventoryFragment : Fragment() {
             val idView = TextView(requireContext()).apply {
                 text = item.itemId.toString()
                 setPadding(16, 16, 16, 16)
-                textSize = textSize_Base // Use dynamic text size
+                textSize = textSizeBase // Use dynamic text size
                 gravity = Gravity.START
                 layoutParams = colParams
                 background = borderDrawable
@@ -181,7 +178,7 @@ class InventoryFragment : Fragment() {
             val nameView = TextView(requireContext()).apply {
                 text = item.itemName
                 setPadding(16, 16, 16, 16)
-                textSize = textSize_Base // Use dynamic text size
+                textSize = textSizeBase // Use dynamic text size
                 gravity = Gravity.START
                 layoutParams = colParams
                 background = borderDrawable
@@ -200,7 +197,7 @@ class InventoryFragment : Fragment() {
             // Quantity TextView
             val qtyView = TextView(requireContext()).apply {
                 text = item.itemQty.toString()
-                textSize = textSize_Base // Use dynamic text size
+                textSize = textSizeBase // Use dynamic text size
                 gravity = Gravity.CENTER
                 textAlignment = View.TEXT_ALIGNMENT_CENTER
                 layoutParams = qtyParams
@@ -217,7 +214,7 @@ class InventoryFragment : Fragment() {
             // Minus Button
             val minusButton = Button(requireContext()).apply {
                 text = "−"
-                textSize = textSize_Base // Use dynamic text size
+                textSize = textSizeBase // Use dynamic text size
                 layoutParams = btnParams
                 setOnClickListener {
                     val currentQty = qtyView.text.toString().toInt()
@@ -230,11 +227,12 @@ class InventoryFragment : Fragment() {
             // Plus Button
             val plusButton = Button(requireContext()).apply {
                 text = "+"
-                textSize = textSize_Base // Use dynamic text size
+                textSize = textSizeBase // Use dynamic text size
                 layoutParams = btnParams
                 setOnClickListener {
                     val currentQty = qtyView.text.toString().toInt()
-                    qtyView.text = (currentQty + 1).toString()
+                    val newQty = currentQty + 1
+                    qtyView.text = getString(R.string.item_quantity, newQty)
                 }
             }
 
