@@ -10,13 +10,13 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.inventory_management.databinding.FragmentInventoryBinding
+import com.example.inventory_management.ItemAdapter
 import android.widget.TableRow
 import android.graphics.Typeface
 import android.widget.Button
 import android.widget.LinearLayout
 import android.view.Gravity
 import androidx.core.content.ContextCompat
-import android.app.ActionBar.LayoutParams
 
 
 
@@ -191,7 +191,7 @@ class InventoryFragment : Fragment() {
             val quantityLayoutParams = TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 1f)
 
             // Quantity TextView LayoutParams with weight
-            val qtyParams = LayoutParams(0, LayoutParams.WRAP_CONTENT, 1f).apply {
+            val qtyParams = LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f).apply {
                 gravity = Gravity.CENTER
                 marginStart = 4
                 marginEnd = 4
@@ -208,7 +208,7 @@ class InventoryFragment : Fragment() {
             }
 
             // LayoutParams for buttons with dynamic width based on screen size
-            val btnParams = LayoutParams(0, LayoutParams.WRAP_CONTENT, 1f).apply {
+            val btnParams = LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f).apply {
                 marginEnd = 4
                 marginStart = 4
                 width = buttonWidth // Set dynamic width based on screen size
