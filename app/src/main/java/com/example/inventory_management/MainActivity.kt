@@ -56,7 +56,10 @@ class MainActivity : AppCompatActivity() {
                                 // Handle admin login logic here
                             } else {
                                 Log.d(TAG, "Regular user logged in: $username")
-                                // Handle regular user login logic here
+                                val intent = Intent(this, Homepage::class.java)
+                                intent.putExtra("role", "user")
+                                startActivity(intent)
+                                finish()
                             }
                         } else {
                             Log.d(TAG, "Authentication failed for user: $username")

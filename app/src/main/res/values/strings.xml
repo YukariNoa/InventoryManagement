@@ -10,5 +10,8 @@
 
     <string name="menu_home">Home</string>
     <string name="menu_inventory">Inventory</string>
-    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_add_remove">Add/Remove Item</string>
+
+    <string name="remove_button">Remove Item</string>
+    <string name="add_button">Add Item</string>
 </resources>

@@ -40,6 +40,7 @@ android {
 
 dependencies {
     implementation(platform("com.google.firebase:firebase-bom:34.2.0"))
+    implementation("androidx.recyclerview:recyclerview:1.3.0")
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)

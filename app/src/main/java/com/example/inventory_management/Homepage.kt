@@ -36,11 +36,23 @@ class Homepage : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment_content_homepage)
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
-        appBarConfiguration = AppBarConfiguration(
-            setOf(
-                R.id.nav_home, R.id.nav_inventory, R.id.nav_slideshow
-            ), drawerLayout
-        )
+        val username = intent.getStringExtra("role")
+        if (username == "admin") {
+            appBarConfiguration = AppBarConfiguration(
+                setOf(
+                    R.id.nav_home, R.id.nav_inventory, R.id.nav_add_remove_item
+                ), drawerLayout
+            )
+        }
+
+        else {
+            appBarConfiguration = AppBarConfiguration(
+                setOf(
+                    R.id.nav_home, R.id.nav_inventory
+                ), drawerLayout
+            )
+            navView.menu.removeItem(R.id.nav_add_remove_item)
+        }
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
     }

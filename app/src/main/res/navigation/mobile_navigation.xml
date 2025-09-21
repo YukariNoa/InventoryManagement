@@ -18,8 +18,8 @@
         tools:layout="@layout/fragment_inventory" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.example.inventory_management.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        android:id="@+id/nav_add_remove_item"
+        android:name="com.example.inventory_management.ui.add_remove.AddRemoveItem"
+        android:label="@string/menu_add_remove"
+        tools:layout="@layout/fragment_add_remove_item" />
 </navigation>
