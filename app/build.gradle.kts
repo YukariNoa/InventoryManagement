@@ -29,6 +29,7 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
+        //jvmTarget.set(JvmTarget.JVM_11)
     }
     kotlinOptions {
         jvmTarget = "11"
