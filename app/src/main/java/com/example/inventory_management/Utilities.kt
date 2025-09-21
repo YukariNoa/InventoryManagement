@@ -11,14 +11,8 @@ fun greetUser(name: String): String {
     return "Hello, $name!"
 }
 
-class Common {
-}
 
-data class Item(
-    val itemId: Int,
-    val itemName: String,
-    val itemQty: Int
-)
+
 
 class ItemAdapter(private var itemList: List<Item>) :
     RecyclerView.Adapter<ItemAdapter.ItemViewHolder>() {
@@ -43,9 +37,4 @@ class ItemAdapter(private var itemList: List<Item>) :
     }
 
     override fun getItemCount(): Int = itemList.size
-
-    fun updateData(newList: List<Item>) {
-        itemList = newList
-        notifyDataSetChanged()
-    }
 }

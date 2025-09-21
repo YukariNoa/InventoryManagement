@@ -10,26 +10,19 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.inventory_management.databinding.FragmentInventoryBinding
-import com.example.inventory_management.ItemAdapter
-import android.widget.TableLayout
 import android.widget.TableRow
 import android.graphics.Typeface
 import android.widget.Button
 import android.widget.LinearLayout
 import android.view.Gravity
-import android.widget.LinearLayout.LayoutParams
 import androidx.core.content.ContextCompat
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import android.util.TypedValue
+import android.app.ActionBar.LayoutParams
 
 
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+
 import com.example.inventory_management.R
 
 
-import com.google.firebase.FirebaseApp
 import com.google.firebase.firestore.FirebaseFirestore
 data class Item(val itemId: Int, val itemName: String, val itemQty: Int)
 class InventoryFragment : Fragment() {
@@ -39,9 +32,6 @@ class InventoryFragment : Fragment() {
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
-
-    private lateinit var adapter: ItemAdapter
-    private lateinit var inventoryViewModel: InventoryViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -201,7 +191,7 @@ class InventoryFragment : Fragment() {
             val quantityLayoutParams = TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 1f)
 
             // Quantity TextView LayoutParams with weight
-            val qtyParams = LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f).apply {
+            val qtyParams = LayoutParams(0, LayoutParams.WRAP_CONTENT, 1f).apply {
                 gravity = Gravity.CENTER
                 marginStart = 4
                 marginEnd = 4
@@ -218,7 +208,7 @@ class InventoryFragment : Fragment() {
             }
 
             // LayoutParams for buttons with dynamic width based on screen size
-            val btnParams = LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f).apply {
+            val btnParams = LayoutParams(0, LayoutParams.WRAP_CONTENT, 1f).apply {
                 marginEnd = 4
                 marginStart = 4
                 width = buttonWidth // Set dynamic width based on screen size
